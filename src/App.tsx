@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Clock from './clock'
+import Clock from './Clock'
+import JobBoard from './JobBoard'
 
 function App() {
 
   return (
     <>
-      <Clock/>      
+      <JobBoard/>      
     </>
   )
 }
