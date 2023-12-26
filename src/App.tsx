@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import JobBoard from './JobBoard'
+import Modal from './Modal'
 
 function App() {
 
   return (
     <>
-      <JobBoard/>      
+      <Modal/>      
     </>
   )
 }
