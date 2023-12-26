@@ -44,18 +44,18 @@ export default function JobListings() {
     return(
         <>
             <h1>Job Listings</h1>
-            <ul>
+            <ol>
                 {jobs.map((job) => {
                     const titleEl = job.url ? <a href={job.url} target="_blank"><h3>{job.title}</h3></a> : <h3>{job.title}</h3>;
   
                     return (
-                        <ol key={job.id}>
+                        <li key={job.id}>
                             {titleEl}
                             <span>By: {job.by}</span> <span>at: {job.time}</span>
-                        </ol>
+                        </li>
                     )
                 })}
-            </ul>
+            </ol>
             {showShowMoreBtn() && <button onClick={getNextJobs}>Load More</button>}
         </>
     )
