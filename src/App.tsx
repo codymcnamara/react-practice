@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import Modal from './Modal'
+import TwoFactorInput from './Components/TwoFactorInput'
 
 function App() {
 
   return (
     <>
-      <Modal/>      
+      <TwoFactorInput/>      
     </>
   )
 }
