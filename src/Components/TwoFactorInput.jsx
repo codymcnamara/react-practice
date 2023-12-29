@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import '../css/TwoFactorInput.css'
 
-
+// https://frontendeval.com/questions/code-input
 
 export default function TwoFactorInput () {
   const currentIndex = useRef(0);
@@ -31,15 +32,54 @@ export default function TwoFactorInput () {
     }
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    let finalString = '';
+    for (let i = 0; i < 4; i++){
+      finalString += inputs['input' + i].current.value;
+    }
+
+    if(finalString === '1234'){
+      alert('correct code! You\'re verified!')
+    }else {
+      alert('incorrect code');
+    }
+
+    console.log(finalString );
+  }
+
 
   return (
     <>
-      <form action="">
-        <input type="text" ref={inputs['input0']} onChange={(e)=>handleChange(e, inputs['input0'])} />
-        <input type="text" ref={inputs['input1']} onChange={(e)=>handleChange(e, inputs['input1'])} />
-        <input type="text" ref={inputs['input2']} onChange={(e)=>handleChange(e, inputs['input2'])} />
-        <input type="text" ref={inputs['input3']} onChange={(e)=>handleChange(e, inputs['input3'])} />
-        <button>Submit</button>
+      <form onSubmit={handleSubmit}>
+        <div className="inputWrap">
+          <input 
+            type="number" 
+            ref={inputs['input0']} 
+            max="9"
+            min="0"
+            onChange={(e)=>handleChange(e, inputs['input0'])} />
+          <input 
+            type="number" 
+            ref={inputs['input1']} 
+            max="9"
+            min="0"
+            onChange={(e)=>handleChange(e, inputs['input1'])} />
+          <input 
+            type="number" 
+            ref={inputs['input2']} 
+            max="9"
+            min="0"
+            onChange={(e)=>handleChange(e, inputs['input2'])} />
+          <input 
+            type="number" 
+            ref={inputs['input3']} 
+            max="9"
+            min="0"
+            onChange={(e)=>handleChange(e, inputs['input3'])} />
+        </div>
+
+        <button type="submit">Submit</button>
       </form>
     </>
   )
