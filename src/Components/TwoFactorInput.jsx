@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import '../css/TwoFactorInput.css'
 
 // https://frontendeval.com/questions/code-input
@@ -6,6 +6,7 @@ import '../css/TwoFactorInput.css'
 export default function TwoFactorInput () {
   const currentIndex = useRef(0);
   const inputs = {};
+  const [currentCombo, setCurrentCombo] = useState('');
   inputs['input0'] = useRef(null);
   inputs['input1'] = useRef(null);
   inputs['input2'] = useRef(null);
@@ -15,6 +16,7 @@ export default function TwoFactorInput () {
 
     // move forward 
     if(e.target.value.length > 0){
+      setCurrentCombo(currentCombo + e.target.value);
       if (ref === inputs['input3']){
         return
       }
@@ -24,6 +26,7 @@ export default function TwoFactorInput () {
 
     // move backwards 
     if(e.target.value.length === 0){
+      setCurrentCombo(currentCombo.slice(0, currentCombo.length - 1));
       if (ref === inputs['input0']){
         return
       }
@@ -52,6 +55,7 @@ export default function TwoFactorInput () {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div>currentCombo: {currentCombo}</div>
         <div className="inputWrap">
           <input 
             type="number" 
@@ -79,7 +83,7 @@ export default function TwoFactorInput () {
             onChange={(e)=>handleChange(e, inputs['input3'])} />
         </div>
 
-        <button type="submit">Submit</button>
+        <button disabled={currentCombo.length < 4} type="submit">Submit</button>
       </form>
     </>
   )
