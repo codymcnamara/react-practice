@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const SecurityCodeInput = () => {
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -11,11 +12,12 @@ const SecurityCodeInput = () => {
       input.value = '';
       return;
     }
-
+    // move forward
     if (value !== '') {
       if (index < 3) {
         inputRefs[index + 1].current.focus();
       }
+      // i don't think this is ever used or needed. 
     } else {
       if (index > 0) {
         inputRefs[index - 1].current.focus();
@@ -55,7 +57,7 @@ const SecurityCodeInput = () => {
       <div style={{ display: 'flex' }}>
         {[0, 1, 2, 3].map((index) => (
           <input
-            key={index}
+            key={uuidv4()}
             ref={inputRefs[index]}
             type="text"
             maxLength="1"
