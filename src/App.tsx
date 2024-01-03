@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import TwoFactorInput from './Components/TwoFactorInput'
+import TransferList from './Components/TransferList'
 
 function App() {
 
   return (
     <>
-      <TwoFactorInput/>      
+      <TransferList/>      
     </>
   )
 }
