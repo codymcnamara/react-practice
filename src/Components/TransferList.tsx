@@ -10,9 +10,19 @@ interface Item {
 }
 
 export const TransferList = () => {
-  const [items, setItems] = useState(data);
-  const [selected, setSelected] = useState([])
+  const [items, setItems] = useState<Item[]>(data);
+  const [selected, setSelected] = useState<Item[]>([])
 
+
+  const updateSelected = (item: Item) => {
+    if(selected.includes(item)){
+      setSelected(selected.filter((selectedItem)=> {
+        return selectedItem !== item 
+      }))
+    }else {
+      setSelected([...selected, item]);
+    }
+  }
 
   return(
       <div className="transferList">
@@ -20,7 +30,7 @@ export const TransferList = () => {
           <h3>unchecked list</h3>
           {items.map((item)=>{
             if(!item.checked)
-              return <Checkbox item={item} key={item.id}/>
+              return <Checkbox item={item} key={item.id} handleClick={updateSelected} isSelected={selected.includes(item)}/>
           })}
         </div>
         <Controls/>
@@ -28,11 +38,9 @@ export const TransferList = () => {
           <h3>checked list</h3>
           {items.map((item)=>{
             if(item.checked)
-              return <Checkbox item={item} key={item.id}/>
+              return <Checkbox item={item} key={item.id} handleClick={updateSelected} isSelected={selected.includes(item)}/>
           })}
         </div>
-
-
       </div>
   )
 
@@ -48,10 +56,10 @@ const Controls = ()=> {
   )
 }
 
-const Checkbox = ({item}: {item: Item}) => {
+const Checkbox = ({item, handleClick, isSelected}: {item: Item, handleClick: (item: Item)=> void, isSelected: boolean} ) => {
   
   return(
-    <div>
+    <div onClick={()=>handleClick(item)} className={'checkbox' + (isSelected ? ' selected' : '')}>
       <div>{item.title}</div>
     </div>
   )

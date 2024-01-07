@@ -7,10 +7,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 20px;
+  margin: 0 40px;
 
   a {
     display: block;
     margin-top: 20px;
   }
+}
+
+.checkbox {
+  border-radius: 4%;
+  padding: 20px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.selected {
+  background: black;
+  color: white;
 }
