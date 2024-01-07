@@ -1,6 +1,13 @@
 // https://www.algochurn.com/frontend/transfer-list
 
 import { useState } from "react";
+import '../css/TransferList.css'
+
+interface Item {
+  title: string,
+  id: number, 
+  checked: boolean
+}
 
 export const TransferList = () => {
   const [items, setItems] = useState(data);
@@ -8,7 +15,7 @@ export const TransferList = () => {
 
 
   return(
-      <>
+      <div className="transferList">
         <div>
           <h3>unchecked list</h3>
           {items.map((item)=>{
@@ -19,11 +26,14 @@ export const TransferList = () => {
         <Controls/>
         <div>
           <h3>checked list</h3>
-
+          {items.map((item)=>{
+            if(item.checked)
+              return <Checkbox item={item} key={item.id}/>
+          })}
         </div>
 
 
-      </>
+      </div>
   )
 
 }
@@ -31,15 +41,15 @@ export const TransferList = () => {
 const Controls = ()=> {
 
   return (
-    <>
-      <span>left arrow</span>
-      <span>right arrow</span>
-    </>
+    <div className="controls">
+      <a>{'<=='}</a>
+      <a>{'==>'}</a>
+    </div>
   )
 }
 
-const Checkbox = ({item}) => {
-
+const Checkbox = ({item}: {item: Item}) => {
+  
   return(
     <div>
       <div>{item.title}</div>

@@ -1,0 +1,16 @@
+.transferList{
+  display: flex;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+
+  a {
+    display: block;
+    margin-top: 20px;
+  }
+}
