@@ -13,15 +13,32 @@ export const TransferList = () => {
   const [items, setItems] = useState<Item[]>(data);
   const [selected, setSelected] = useState<Item[]>([])
 
-
   const updateSelected = (item: Item) => {
+    // remove from selected
     if(selected.includes(item)){
       setSelected(selected.filter((selectedItem)=> {
         return selectedItem !== item 
       }))
-    }else {
+    // add to selected
+    } else {
       setSelected([...selected, item]);
     }
+  }
+
+  const handleArrowClick = (right: boolean)=> {
+    const checkedVal = right;
+    const newItems = items.map((oldItem)=>{
+      if (selected.includes(oldItem)){
+        return {
+          ...oldItem,
+          checked: checkedVal
+        }
+      } else {
+        return oldItem;
+      }
+    })
+    setItems(newItems);
+    setSelected([]);
   }
 
   return(
@@ -30,15 +47,25 @@ export const TransferList = () => {
           <h3>unchecked list</h3>
           {items.map((item)=>{
             if(!item.checked)
-              return <Checkbox item={item} key={item.id} handleClick={updateSelected} isSelected={selected.includes(item)}/>
+              return <Checkbox 
+                item={item} 
+                key={item.id} 
+                handleClick={updateSelected} 
+                isSelected={selected.includes(item)}    
+              />
           })}
         </div>
-        <Controls/>
+        <Controls handleArrowClick={handleArrowClick}/>
         <div>
           <h3>checked list</h3>
           {items.map((item)=>{
             if(item.checked)
-              return <Checkbox item={item} key={item.id} handleClick={updateSelected} isSelected={selected.includes(item)}/>
+              return <Checkbox 
+                item={item} 
+                key={item.id} 
+                handleClick={updateSelected} 
+                isSelected={selected.includes(item)}
+              />
           })}
         </div>
       </div>
@@ -46,12 +73,12 @@ export const TransferList = () => {
 
 }
 
-const Controls = ()=> {
+const Controls = ({handleArrowClick}: { handleArrowClick: (right: boolean)=> void }) => {
 
   return (
     <div className="controls">
-      <a>{'<=='}</a>
-      <a>{'==>'}</a>
+      <a onClick={()=> handleArrowClick(false)}>{'<=='}</a>
+      <a onClick={()=> handleArrowClick(true)}>{'==>'}</a>
     </div>
   )
 }
@@ -68,6 +95,13 @@ const Checkbox = ({item, handleClick, isSelected}: {item: Item, handleClick: (it
 
 export default TransferList
 
+
+const data = [
+  { title: 'First', id: 0, checked: false },
+  { title: 'Second', id: 1, checked: false },
+  { title: 'Third', id: 2, checked: false },
+  { title: 'Fourth', id: 3, checked: false },
+];
 
 
 
@@ -103,10 +137,3 @@ export default TransferList
 // Styling is not important, functionality is.
 // Abstract the logic into separate components. For Example, A Container, Checkbox and Controls component architecture will be helpful and clean.
 
-
-const data = [
-  { title: 'First', id: 0, checked: false },
-  { title: 'Second', id: 1, checked: false },
-  { title: 'Third', id: 2, checked: false },
-  { title: 'Fourth', id: 3, checked: false },
-];
