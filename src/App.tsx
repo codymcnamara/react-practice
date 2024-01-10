@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import NestedNancy from './Components/NestedNancy'
+import NestedNed from './Components/NestedNed'
 
 function App() {
 
   return (
     <>
-      <NestedNancy/>      
+      <NestedNed/>      
     </>
   )
 }

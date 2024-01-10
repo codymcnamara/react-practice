@@ -3,7 +3,7 @@ import {useState, createContext, useContext } from 'react'
 const userContext = createContext('');
 
 export default function NestedNancy () {
-  const [user, setUser] = useState("Jesse dfdfs");
+  const [user, setUser] = useState("Jesse Smith");
 
   return (
     <>
