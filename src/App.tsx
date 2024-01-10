@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import NestedNed from './Components/NestedNed'
+import Feedback from './Components/Feedback'
 
 function App() {
 
   return (
     <>
-      <NestedNed/>      
+      <Feedback numberOfStars={5} />      
     </>
   )
 }
