@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Star from './Star';
 import '../css/youreAStar.css'
 
+// https://www.algochurn.com/frontend/feedback-stars
+
 const Feedback = ({ numberOfStars }: {numberOfStars: number}) => {
   const [persistedRating, setPersistedRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);

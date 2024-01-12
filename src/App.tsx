@@ -1,12 +1,12 @@
 import './App.css'
 // import Clock from './Clock'
-import Feedback from './Components/Feedback'
+import JobBoard from './Components/JobBoard'
 
 function App() {
 
   return (
     <>
-      <Feedback numberOfStars={5} />      
+      <JobBoard numberOfStars={5} />      
     </>
   )
 }

@@ -32,13 +32,22 @@ export default function JobListings() {
         setJobs(newJobs);
     }
 
-    const fetchJobIds = async () => {
-        jobIds.current = await axios.get('https://hacker-news.firebaseio.com/v0/jobstories.json')
-        getNextJobs();
-    }
-
     useEffect( () =>{
+        let ignore = false;
+
+        const fetchJobIds = async () => {
+            jobIds.current = await axios.get('https://hacker-news.firebaseio.com/v0/jobstories.json')
+            if(!ignore){
+                getNextJobs();
+            }
+        }
+
         fetchJobIds();
+
+        return ()=>{
+            console.log('in cleanup function');
+            ignore = true;
+        }
     }, [])
 
     return(
